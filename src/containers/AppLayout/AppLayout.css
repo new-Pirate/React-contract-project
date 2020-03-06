@@ -1,0 +1,25 @@
+.appLayout-menu {
+  line-height: 64px !important;
+}
+
+.appLayout-content {
+  padding: 0 50px;
+}
+
+.appLayout-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.appLayout-footer {
+  text-align: center;
+}
+
+[data-theme="dark"] .site-layout-content {
+  background: #141414;
+}
+
+[data-theme="dark"] .logo {
+  background: rgba(255, 255, 255, 0.3);
+}

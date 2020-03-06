@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
+import { store } from '../redux/store';
 
-import { store } from '../store/store';
-import { Login, Test } from '../pages';
+import { Login } from '../pages';
+import AppLayout from './AppLayout/AppLayout';
 
 class App extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class App extends React.Component {
         <Router history={browserHistory} >
           <Switch>
             <Route path="/login" component={Login} />
-            <Route exact path="/" component={Test} />
+            <Route exact path="/" component={AppLayout} />
           </Switch>
         </Router>
       </Provider>

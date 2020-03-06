@@ -2,7 +2,8 @@
   background-image: url(../../images/logo.png);
   background-size: contain;
   background-repeat: no-repeat;
-  width: 160px;
-  height: 34px;
-  margin-bottom: 20px;
+  margin: 16px 24px 16px 0;
+  width: 120px;
+  height: 31px;
+  float: left;
 }

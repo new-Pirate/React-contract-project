@@ -1,7 +1,5 @@
-import Login from './Login';
-import Test from './Test';
+import Login from './Login/Login';
 
 export {
-  Login,
-  Test
+  Login
 };

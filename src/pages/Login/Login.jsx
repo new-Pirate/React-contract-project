@@ -2,25 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import Logo from '../../component/Logo/Logo';
-import { getAuthData } from '../../store/actions/auth';
-import { URL_AUTH, API_AUTH } from '../../api/index';
-import './login.css';
-
-const API = new API_AUTH();
+import Logo from '../../components/Logo/Logo';
+import { getAuthData } from '../../redux/action/auth';
+import './Login.css';
 
 class Login extends React.Component {
+
   onFinish = (values) => {
     console.log(values);
-    API.post(URL_AUTH, values);
+    this.props.getAuthData(values);
   }
 
   render() {
-    // if (isLoggedIn) {
-    //   return <Redirect to="/" />;
-    // }
-
+    if (this.props.isLoggedIn) {
+      return <Redirect to='/' />;
+    }
     return (
       <div className="loginPage">
         <div className="loginPage-background" />
@@ -78,17 +76,21 @@ class Login extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     isLoggedIn: state.authReducer.isLoggedIn
-//   };
-// };
+Login.propTypes = {
+  getAuthData: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getAuthData: (values) => dispatch(getAuthData(values))
-//   };
-// };
+const mapStateToProps = (store) => {
+  return {
+    isLoggedIn: store.authReduser.isLoggedIn
+  };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAuthData: (formResult) => dispatch(getAuthData(formResult))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
