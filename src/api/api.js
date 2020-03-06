@@ -1,31 +1,15 @@
-// Имплементация класса взаимодействия по REST API
-export const URL_AUTH = 'https://reqres.in/api/login';
+import { getCookie, setCookie } from '../utils/cookie';
 
-function getCookie(name) {
-  const matches = document.cookie.match(new RegExp(
-    '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+export const BASE_URL = 'https://reqres.in/api';
 
-function setCookie(name, token) {
-  const date = new Date(new Date().getTime() + 1 * 60 * 1000);
-  document.cookie = name + '=' + token + ';path=/;expires=' + date.toUTCString();
-}
-
-function deleteCookie(name) {
-  setCookie(name, '', {
-    expires: -1
-  });
-}
-
-export class API_AUTH {
+/* authentication */
+export class AUTH_API {
   get(url) {
     return this.sendRequest('GET', url);
   }
 
-  post(url, body) {
-    return this.sendRequest('POST', url, body);
+  post(body) {
+    return this.sendRequest('POST', `${BASE_URL}/login`, body);
   }
 
   put(url) {
@@ -66,9 +50,8 @@ export class API_AUTH {
         return response;
       })
       .then(response => response.json().then(json => {
-        console.log(json);
-        const tokentest = json.token;
-        setCookie('token', tokentest);
+        const saveToken = json.token;
+        setCookie('token', saveToken);
         return Promise.resolve(json);
       }))
       .catch(error => {
