@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
-import { store } from '../redux/store';
+import { store } from '../store/store';
 
 import { Login } from '../pages';
 import AppLayout from './AppLayout/AppLayout';

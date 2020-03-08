@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Logo from '../../components/Logo/Logo';
-import { getAuthData } from '../../redux/action/auth';
+import { getAuthData } from '../../store/action/auth';
 import './Login.css';
 
 class Login extends React.Component {
