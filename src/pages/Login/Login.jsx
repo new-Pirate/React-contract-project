@@ -59,7 +59,6 @@ class Login extends React.Component {
                 className="loginForm-input"
               />
             </Form.Item>
-
             <Form.Item>
               <Button
                 type="primary"

@@ -13,7 +13,7 @@ class App extends React.Component {
         <Router history={browserHistory} >
           <Switch>
             <Route path="/login" component={Login} />
-            <Route exact path="/" component={AppLayout} />
+            <Route path="/" component={AppLayout} />
           </Switch>
         </Router>
       </Provider>

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Switch, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, Menu } from 'antd';
 
 import Logo from '../../components/Logo/Logo';
+import { Contacts, About, Users } from '../../pages';
 import { getCookie, deleteCookie } from '../../utils/cookie';
 import { logout } from '../../store/action/auth';
 import './AppLayout.css';
@@ -31,9 +32,15 @@ class AppLayout extends React.Component {
             defaultSelectedKeys={['']}
             className="appLayout-menu"
           >
-            <Menu.Item key="Users">Users</Menu.Item>
-            <Menu.Item key="About">About</Menu.Item>
-            <Menu.Item key="Contacts">Contacts</Menu.Item>
+            <Menu.Item key="Users">
+              <Link to="/users">Users</Link>
+            </Menu.Item>
+            <Menu.Item key="About">
+              <Link to="/about">About</Link>
+            </Menu.Item>
+            <Menu.Item key="Contacts">
+              <Link to="/contacts">Contacts</Link>
+            </Menu.Item>
             <Menu.Item
               key="Logout"
               className='logout'
@@ -44,7 +51,11 @@ class AppLayout extends React.Component {
           </Menu>
         </Header>
         <Content className="appLayout-content">
-          <div className="appLayout-layout-content">Content</div>
+          <Switch>
+            <Route path="/users" component={Users} />
+            <Route path="/about" component={About} />
+            <Route path="/contacts" component={Contacts} />
+          </Switch>
         </Content>
         <Footer className="appLayout-footer">Test React site ©2020 Created by new_P1rate</Footer>
       </Layout>
