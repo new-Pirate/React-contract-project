@@ -7,9 +7,13 @@ import './User.css';
 class User extends React.Component {
   render() {
     const { name, id, username, email, phone } = this.props.user;
+    const { activeUser } = this.props;
 
     return (
-      <div className="user">
+      <div
+        className={id === activeUser ? 'user active' : 'user'}
+        onClick={this.props.onActiveUser}
+      >
         <div className="user-leftside">
           <div className="user-name">{name}</div>
           <div className="user-username">{username}</div>
@@ -25,7 +29,9 @@ class User extends React.Component {
 }
 
 User.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  onActiveUser: PropTypes.func.isRequired,
+  activeUser: PropTypes.number.isRequired
 };
 
 export default User;

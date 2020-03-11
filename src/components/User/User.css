@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2);
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .user:last-child{
@@ -20,18 +21,7 @@
   font-weight: bold;
 }
 
-.user-username {
-
-}
-
-.user-email {
-
-}
-
-.user-phone  {
-
-}
-
-.user-id {
-  
+.active {
+  background: #D12135;
+  color: #fff;
 }

@@ -10,7 +10,8 @@ class Users extends React.Component {
   constructor() {
     super();
     this.state = {
-      usersList: []
+      usersList: [],
+      activeUser: 0
     };
     this.getUsers();
   }
@@ -23,7 +24,6 @@ class Users extends React.Component {
     this._mounted = false;
   }
 
-
   getUsers = () => {
     USERS.get('/users')
       .then((users) => {
@@ -32,18 +32,31 @@ class Users extends React.Component {
             return { usersList: users };
           });
         }
+
       });
   }
 
+  onActiveUser = (id) => {
+    this.setState({
+      activeUser: id
+    });
+  }
+
   render() {
-    const usersList = this.state.usersList;
+    const { usersList, activeUser } = this.state;
 
     return (
       <div className="users">
         <div className="users-list">
+          <h4 className="users-">Найдено: {usersList.length} пользователей</h4>
           {
             usersList.map((user) => {
-              return <User key={user.id} user={user} />;
+              return <User
+                key={user.id}
+                user={user}
+                onActiveUser={() => this.onActiveUser(user.id)}
+                activeUser={activeUser}
+              />;
             })
           }
         </div>
