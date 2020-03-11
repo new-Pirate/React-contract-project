@@ -1,6 +1,7 @@
 import { getCookie, setCookie } from '../utils/cookie';
 
-export const BASE_URL = 'https://reqres.in/api';
+export const AUTH_URL = 'https://reqres.in/api';
+export const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 /* authentication */
 export class AUTH_API {
@@ -9,7 +10,7 @@ export class AUTH_API {
   }
 
   post(body) {
-    return this.sendRequest('POST', `${BASE_URL}/login`, body);
+    return this.sendRequest('POST', `${AUTH_URL}/login`, body);
   }
 
   put(url) {
@@ -52,6 +53,48 @@ export class AUTH_API {
       .then(response => response.json().then(json => {
         const saveToken = json.token;
         setCookie('token', saveToken);
+        return Promise.resolve(json);
+      }))
+      .catch(error => {
+        return Promise.reject(error);
+      });
+  }
+}
+
+export class USERS_API {
+  get(url) {
+    return this.sendRequest('GET', `${BASE_URL}${url}`);
+  }
+
+  post(url, body) {
+    return this.sendRequest('POST', `${BASE_URL}${url}`, body);
+  }
+
+  put(url) {
+    return this.sendRequest('PUT', `${BASE_URL}${url}`);
+  }
+
+  delete(url) {
+    return this.sendRequest('DELETE', `${BASE_URL}${url}`);
+  }
+
+  sendRequest = (method, url, body) => {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8'
+    };
+
+    const config = {
+      method,
+      headers
+    };
+
+    if (body) {
+      config.body = JSON.stringify(body);
+    }
+
+    return fetch(url, config)
+      .then(response => response.json().then(json => {
         return Promise.resolve(json);
       }))
       .catch(error => {

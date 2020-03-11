@@ -1,5 +1,14 @@
 .users {
-  background: #fff;
-  padding: 24px;
-  min-height: 280px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.users-list {
+  padding: 24px 50px 0 0;
+  width: 44%;
+}
+
+.users-info {
+  width: 56%;
+  background: #000;
 }
