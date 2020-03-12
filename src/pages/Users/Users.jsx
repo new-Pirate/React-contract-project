@@ -1,6 +1,7 @@
 import React from 'react';
 
 import User from '../../components/User/User';
+import SearchPanel from '../../components/SearchPanel/SearchPanel';
 import { USERS_API } from '../../api/api';
 import './Users.css';
 
@@ -11,7 +12,8 @@ class Users extends React.Component {
     super();
     this.state = {
       usersList: [],
-      activeUser: 0
+      activeUser: 0,
+      term: ''
     };
     this.getUsers();
   }
@@ -36,6 +38,22 @@ class Users extends React.Component {
       });
   }
 
+  onSearch = (term) => {
+    this.setState({
+      term: term
+    });
+  }
+
+  searchUsers = (usersList, term) => {
+    if (term.length === 0) {
+      return usersList;
+    }
+
+    return usersList.filter((user) => {
+      return user.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
+    });
+  }
+
   onActiveUser = (id) => {
     this.setState({
       activeUser: id
@@ -43,14 +61,16 @@ class Users extends React.Component {
   }
 
   render() {
-    const { usersList, activeUser } = this.state;
+    const { usersList, activeUser, term } = this.state;
+    const visibleUserList = this.searchUsers(usersList, term);
 
     return (
       <div className="users">
         <div className="users-list">
+          <SearchPanel onSearch={this.onSearch}/>
           <h4 className="users-">Найдено: {usersList.length} пользователей</h4>
           {
-            usersList.map((user) => {
+            visibleUserList.map((user) => {
               return <User
                 key={user.id}
                 user={user}
