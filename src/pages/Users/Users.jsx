@@ -68,7 +68,7 @@ class Users extends React.Component {
       <div className="users">
         <div className="users-list">
           <SearchPanel onSearch={this.onSearch}/>
-          <h4 className="users-">Найдено: {usersList.length} пользователей</h4>
+          <h4>Найдено: {usersList.length} пользователей</h4>
           {
             visibleUserList.map((user) => {
               return <User
