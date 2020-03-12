@@ -1,6 +1,7 @@
 import React from 'react';
 
 import User from '../../components/User/User';
+import UserInfo from '../../components/UserInfo/UserInfo';
 import SearchPanel from '../../components/SearchPanel/SearchPanel';
 import { USERS_API } from '../../api/api';
 import './Users.css';
@@ -34,7 +35,6 @@ class Users extends React.Component {
             return { usersList: users };
           });
         }
-
       });
   }
 
@@ -81,7 +81,7 @@ class Users extends React.Component {
           }
         </div>
         <div className="users-info">
-
+          <UserInfo/>
         </div>
       </div>
     );
