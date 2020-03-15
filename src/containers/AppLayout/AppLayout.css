@@ -2,6 +2,10 @@
   line-height: 64px !important;
 }
 
+.ant-layout-header {
+  background: #fff !important;
+}
+
 .appLayout-content {
   padding: 0 50px;
 }

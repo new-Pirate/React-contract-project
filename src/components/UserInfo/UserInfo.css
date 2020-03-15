@@ -1,11 +1,42 @@
 .user-info {
-
-}
-
-.user-info-avatar {
-
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #E8E6E6;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .user-info-blockinfo {
-  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  width: 100%;
+}
+
+.user-info-avatar {
+  margin-right: 20px !important;
+}
+
+.user-info-item {
+  border-left: 1px solid #E8E6E6;
+  padding-left: 20px;
+}
+
+.user-info-item-title {
+  color: #959CA4;
+}
+
+.user-info-item-desc {
+  color: #000;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1199px) {
+  .user-info-blockinfo {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.user-info-buttonWrap {
+  display: flex;
+  justify-content: flex-end;
 }

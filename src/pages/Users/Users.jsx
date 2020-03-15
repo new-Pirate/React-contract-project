@@ -81,7 +81,7 @@ class Users extends React.Component {
           }
         </div>
         <div className="users-info">
-          <UserInfo/>
+          <UserInfo activeUser={activeUser} />
         </div>
       </div>
     );

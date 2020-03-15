@@ -27,7 +27,7 @@ class AppLayout extends React.Component {
         <Header>
           <Logo />
           <Menu
-            theme="dark"
+            theme="light"
             mode="horizontal"
             defaultSelectedKeys={['']}
             className="appLayout-menu"
