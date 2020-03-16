@@ -1,7 +1,12 @@
 # React-contract-project
 
-stack: React, Redux, Routing, Thunk
+stack: React, Redux, Routing, Thunk, json-server
 
-API: https://reqres.in/
+API authorization: https://reqres.in/
+API main: "db.json"
 
-npm i => npm start => http://localhost:3000/
+Start aplication:
+npm i => 
+json-server --watch db.json => 
+npm start => 
+http://localhost:3000/
