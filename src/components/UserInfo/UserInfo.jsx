@@ -41,13 +41,15 @@ class UserInfo extends React.Component {
 
   render() {
     const { user } = this.state;
+    const { activeUser } = this.props;
 
     if (!user) {
-      return <span>Выберите пользователя</span>;
+      return <div className="user-info-missing">Выберите пользователя</div>;
     }
 
     return (
       <div>
+        <div className="user-info-header">Информация пользователя "{user.username}"</div>
         <div className="user-info">
           <Avatar className="user-info-avatar" size={100} src={user.url} />
           <div className="user-info-blockinfo">
@@ -78,7 +80,12 @@ class UserInfo extends React.Component {
           </div>
         </div>
         <div className="user-info-buttonWrap">
-          <Button type="primary">Подробная информация</Button>
+          <Button
+            type="primary"
+            onClick={() => history.push(`/users/view/${activeUser}`)}
+          >
+            Подробная информация
+          </Button>
         </div>
       </div>
     );

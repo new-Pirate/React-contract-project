@@ -6,7 +6,7 @@ import './User.css';
 
 class User extends React.Component {
   render() {
-    const { name, id, username, email, phone } = this.props.user;
+    const { name, id, username } = this.props.user;
     const { activeUser, onActiveUser } = this.props;
 
     return (
@@ -17,10 +17,8 @@ class User extends React.Component {
         <div className="user-leftside">
           <div className="user-name">{name}</div>
           <div className="user-username">{username}</div>
-          <div className="user-email">{email}</div>
         </div>
         <div className="user-rightside">
-          <div className="user-phone">{phone}</div>
           <div className="user-id">{id}</div>
         </div>
       </div>
