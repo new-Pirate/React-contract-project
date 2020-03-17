@@ -11,8 +11,7 @@ class UserInfo extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: null,
-      photo: null
+      user: null
     };
   }
 
@@ -38,17 +37,10 @@ class UserInfo extends React.Component {
           return { user: user };
         });
       });
-
-    USER.get(`/photos/${activeUser}`)
-      .then((photo) => {
-        this.setState(() => {
-          return { photo: photo };
-        });
-      });
   }
 
   render() {
-    const { user, photo } = this.state;
+    const { user } = this.state;
 
     if (!user) {
       return <span>Выберите пользователя</span>;
@@ -57,7 +49,7 @@ class UserInfo extends React.Component {
     return (
       <div>
         <div className="user-info">
-          <Avatar className="user-info-avatar" size={100} src={photo.url} />
+          <Avatar className="user-info-avatar" size={100} src={user.url} />
           <div className="user-info-blockinfo">
             <div className="user-info-item">
               <div className="user-info-item-title">Полное имя</div>

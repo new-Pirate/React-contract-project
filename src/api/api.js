@@ -1,7 +1,7 @@
 import { getCookie, setCookie } from '../utils/cookie';
 
 export const AUTH_URL = 'https://reqres.in/api';
-export const BASE_URL = 'https://jsonplaceholder.typicode.com';
+export const BASE_URL = 'http://localhost:4000';
 
 /* authentication */
 export class AUTH_API {
@@ -60,6 +60,8 @@ export class AUTH_API {
       });
   }
 }
+
+/* User list */
 
 export class USERS_API {
   get(url) {
