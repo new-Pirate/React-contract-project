@@ -1,8 +1,11 @@
 import React from 'react';
 import { Avatar, Button } from 'antd';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import { USERS_API } from '../../api/api';
+import InfoItem from '../../components/InfoItem/InfoItem';
+import users from '../../constants/users';
 import './UserInfo.css';
 
 const USER = new USERS_API();
@@ -41,7 +44,7 @@ class UserInfo extends React.Component {
 
   render() {
     const { user } = this.state;
-    const { activeUser } = this.props;
+    const { activeUser, history } = this.props;
 
     if (!user) {
       return <div className="user-info-missing">Выберите пользователя</div>;
@@ -53,30 +56,12 @@ class UserInfo extends React.Component {
         <div className="user-info">
           <Avatar className="user-info-avatar" size={100} src={user.url} />
           <div className="user-info-blockinfo">
-            <div className="user-info-item">
-              <div className="user-info-item-title">Полное имя</div>
-              <div className="user-info-item-desc">{user.name}</div>
-            </div>
-            <div className="user-info-item">
-              <div className="user-info-item-title">Username</div>
-              <div className="user-info-item-desc">{user.username}</div>
-            </div>
-            <div className="user-info-item">
-              <div className="user-info-item-title">Email</div>
-              <div className="user-info-item-desc">{user.email}</div>
-            </div>
-            <div className="user-info-item">
-              <div className="user-info-item-title">Телефон</div>
-              <div className="user-info-item-desc">{user.phone}</div>
-            </div>
-            <div className="user-info-item">
-              <div className="user-info-item-title">Сайт</div>
-              <div className="user-info-item-desc">{user.website}</div>
-            </div>
-            <div className="user-info-item">
-              <div className="user-info-item-title">id номер</div>
-              <div className="user-info-item-desc">{user.id}</div>
-            </div>
+            <InfoItem title={users.name} desc={user.name} />
+            <InfoItem title={users.username} desc={user.username} />
+            <InfoItem title={users.email} desc={user.email} />
+            <InfoItem title={users.phone} desc={user.phone} />
+            <InfoItem title={users.website} desc={user.website} />
+            <InfoItem title={users.id} desc={user.id} />
           </div>
         </div>
         <div className="user-info-buttonWrap">
@@ -93,7 +78,8 @@ class UserInfo extends React.Component {
 }
 
 UserInfo.propTypes = {
-  activeUser: PropTypes.number.isRequired
+  activeUser: PropTypes.number.isRequired,
+  history: PropTypes.object.isRequired
 };
 
-export default UserInfo;
+export default withRouter(UserInfo);
