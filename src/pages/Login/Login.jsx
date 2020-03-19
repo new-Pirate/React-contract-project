@@ -11,7 +11,6 @@ import './Login.css';
 class Login extends React.Component {
 
   onFinish = (values) => {
-    console.log(values);
     this.props.getAuthData(values);
   }
 

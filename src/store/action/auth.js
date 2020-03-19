@@ -29,7 +29,7 @@ export const logout = () => {
   };
 };
 
-// Инициируем экшны
+// Инициируем экшены
 export const getAuthData = (params) => (dispatch) => {
   dispatch(authRequest());
 

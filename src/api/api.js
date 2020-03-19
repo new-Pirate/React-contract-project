@@ -96,7 +96,13 @@ export class USERS_API {
     }
 
     return fetch(url, config)
-      .then(response => response.json().then(json => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Статус ошибки: ${response.status} сообщение: ${response.message}`);
+        }
+        return response;
+      })
+      .then((response) => response.json().then(json => {
         return Promise.resolve(json);
       }))
       .catch(error => {

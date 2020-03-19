@@ -17,7 +17,7 @@ class InfoItem extends React.Component {
 
 InfoItem.propTypes = {
   title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired
+  desc: PropTypes.any.isRequired
 };
 
 export default InfoItem;

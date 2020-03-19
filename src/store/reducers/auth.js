@@ -2,7 +2,7 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from '../types/aut
 
 const initialState = {
   loading: false,
-  error: false,
+  error: null,
   isLoggedIn: false
 };
 
@@ -10,14 +10,12 @@ export default (state = initialState, {type, payload}) => {
   switch (type) {
     case LOGIN_REQUEST:
       return { ...state,
-        loading: true,
-        error: false
+        loading: true
       };
 
     case LOGIN_SUCCESS:
       return { ...state,
         loading: false,
-        error: false,
         isLoggedIn: true
       };
 
