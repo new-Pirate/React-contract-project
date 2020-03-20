@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import User from '../../components/User/User';
 import UserInfo from '../../components/UserInfo/UserInfo';
 import SearchPanel from '../../components/SearchPanel/SearchPanel';
-import { getUsersData } from '../../store/action/user';
+import { getUsersList } from '../../store/action/user';
 import './Users.css';
 
 class Users extends React.Component {
@@ -19,7 +19,7 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUsersData('/users');
+    this.props.getUsersList('/users');
   }
 
   componentDidUpdate(prevProps) {
@@ -74,7 +74,10 @@ class Users extends React.Component {
           }
         </div>
         <div className="users-info">
-          <UserInfo activeUser={activeUser} />
+          <UserInfo
+            activeUser={activeUser}
+            userInfo={usersList[activeUser - 1]}
+          />
         </div>
       </div>
     );
@@ -82,21 +85,19 @@ class Users extends React.Component {
 }
 
 Users.propTypes = {
-  getUsersData: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
+  getUsersList: PropTypes.func.isRequired,
   usersList: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (store) => {
   return {
-    usersList: store.userReduser.usersList,
-    loading: store.userReduser.loading
+    usersList: store.userReduser.usersList
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUsersData: (api) => dispatch(getUsersData(api))
+    getUsersList: (api) => dispatch(getUsersList(api))
   };
 };
 

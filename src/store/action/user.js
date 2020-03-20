@@ -1,7 +1,10 @@
 import {
   FETCH_USERS_LIST_REQUEST,
   FETCH_USERS_LIST_SUCCESS,
-  FETCH_USERS_LIST_FAILED
+  FETCH_USERS_LIST_FAILED,
+  FETCH_USER_DETAILS_REQUEST,
+  FETCH_USER_DETAILS_SUCCESS,
+  FETCH_USER_DETAILS_FAILED
 } from '../types/users';
 
 import { USERS_API } from '../../api/api';
@@ -28,8 +31,28 @@ export const fetchUserListFalied = (payload) => {
   };
 };
 
+export const fetchUserDetailsRequest = () => {
+  return {
+    type: FETCH_USER_DETAILS_REQUEST
+  };
+};
+
+export const fetchUserDetailsSuccess = (payload) => {
+  return {
+    type: FETCH_USER_DETAILS_SUCCESS,
+    payload
+  };
+};
+
+export const fetchUserDetailsFalied = (payload) => {
+  return {
+    type: FETCH_USER_DETAILS_FAILED,
+    payload
+  };
+};
+
 // Инициируем экшены
-export const getUsersData = (params) => (dispatch) => {
+export const getUsersList = (params) => (dispatch) => {
   dispatch(fetchUserListRequest());
 
   API.get(params)
@@ -38,5 +61,17 @@ export const getUsersData = (params) => (dispatch) => {
     })
     .catch((err) => (
       dispatch(fetchUserListFalied(err))
+    ));
+};
+
+export const getUserDetails = (params) => (dispatch) => {
+  dispatch(fetchUserDetailsRequest());
+
+  API.get(params)
+    .then((res) => {
+      dispatch(fetchUserDetailsSuccess(res));
+    })
+    .catch((err) => (
+      dispatch(fetchUserDetailsFalied(err))
     ));
 };
