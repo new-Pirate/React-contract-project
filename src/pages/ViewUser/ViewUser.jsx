@@ -9,7 +9,7 @@ import InfoItem from '../../components/InfoItem/InfoItem';
 import { getUserDetails } from '../../store/action/user';
 import './ViewUser.css';
 
-class UserDetail extends React.Component {
+class ViewUser extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -56,10 +56,12 @@ class UserDetail extends React.Component {
 
   render() {
     const { details } = this.state;
+    const { history } = this.props;
+
 
     return (
       <div className="view-user">
-        <Avatar className="view-user-avatar" size={150} />
+        <Avatar className="view-user-avatar" src={details.url} size={150} />
         <div className="view-user-section">
           <h3 className="view-user-section-title">Общая информация</h3>
           <div className="view-user-section-block">
@@ -94,13 +96,20 @@ class UserDetail extends React.Component {
             <InfoItem title={users.company_bs} desc={details.company.bs} />
           </div>
         </div>
+        <Button
+          type="primary"
+          onClick={() => history.push(`/users/edit/${this.props.match.params.id}`)}
+        >
+          Редактировать пользователя
+        </Button>
       </div>
     );
   }
 }
 
-UserDetail.propTypes = {
+ViewUser.propTypes = {
   getUserDetails: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   details: PropTypes.object.isRequired
 };
@@ -117,4 +126,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserDetail));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ViewUser));

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Layout, Menu } from 'antd';
 
 import Logo from '../../components/Logo/Logo';
-import { Contacts, About, Users, ViewUser } from '../../pages';
+import { Contacts, About, Users, ViewUser, EditUser } from '../../pages';
 import { getCookie, deleteCookie } from '../../utils/cookie';
 import { logout } from '../../store/action/auth';
 import './AppLayout.css';
@@ -56,6 +56,7 @@ class AppLayout extends React.Component {
             <Route path="/about" component={About} />
             <Route path="/contacts" component={Contacts} />
             <Route path="/users/view/:id" component={ViewUser} />
+            <Route path="/users/edit/:id" component={EditUser} />
           </Switch>
         </Content>
         <Footer className="appLayout-footer">Test React site ©2020 Created by new_P1rate</Footer>
