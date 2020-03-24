@@ -1,4 +1,4 @@
-const users = {
+export const users = {
   id: 'id номер',
   name: 'Полное имя',
   username: 'Пользователь',
@@ -14,10 +14,31 @@ const users = {
   phone: 'Телефон',
   website: 'Сайт',
   company: 'Компания',
-  company_name: 'Название',
+  company_label: 'Название',
   company_catchPhrase: 'Цель',
   company_bs: 'Слоган',
   url: 'Аватарка'
 };
 
-export default users;
+export const usersEng = {
+  id: 'id',
+  name: 'name',
+  username: 'username',
+  address: 'address',
+  address_street: 'street',
+  address_suite: 'suite',
+  address_city: 'city',
+  address_zipcode: 'zipcode',
+  address_geo: 'geo',
+  address_lat: 'lat',
+  address_lng: 'lng',
+  contacts: 'contacts',
+  email: 'email',
+  phone: 'phone',
+  website: 'website',
+  company: 'company',
+  company_label: 'label',
+  company_catchPhrase: 'catchPhrase',
+  company_bs: 'bs',
+  url: 'url'
+};

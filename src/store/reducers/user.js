@@ -29,7 +29,7 @@ const initialState = {
     phone: '',
     website: '',
     company: {
-      name: '',
+      label: '',
       catchPhrase: '',
       bs: ''
     },

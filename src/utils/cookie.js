@@ -6,7 +6,7 @@ export function getCookie(name) {
 }
 
 export function setCookie(name, token) {
-  const date = new Date(new Date().getTime() + 10 * 60 * 1000);
+  const date = new Date(new Date().getTime() + 30 * 60 * 1000);
   document.cookie = name + '=' + token + ';path=/;expires=' + date.toUTCString();
 }
 

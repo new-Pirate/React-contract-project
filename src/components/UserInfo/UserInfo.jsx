@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import InfoItem from '../../components/InfoItem/InfoItem';
-import users from '../../constants/users';
+import { users } from '../../constants/users';
 import './UserInfo.css';
 
 

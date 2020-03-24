@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Avatar, Button } from 'antd';
 
-import users from '../../constants/users';
+import { users } from '../../constants/users';
 import InfoItem from '../../components/InfoItem/InfoItem';
 import { getUserDetails } from '../../store/action/user';
 import './ViewUser.css';
@@ -31,7 +31,7 @@ class ViewUser extends React.Component {
         phone: '',
         website: '',
         company: {
-          name: '',
+          label: '',
           catchPhrase: '',
           bs: ''
         },
@@ -58,7 +58,6 @@ class ViewUser extends React.Component {
     const { details } = this.state;
     const { history } = this.props;
 
-
     return (
       <div className="view-user">
         <Avatar className="view-user-avatar" src={details.url} size={150} />
@@ -84,6 +83,7 @@ class ViewUser extends React.Component {
             <InfoItem title={users.address_street} desc={details.address.street} />
             <InfoItem title={users.address_suite} desc={details.address.suite} />
             <InfoItem title={users.address_city} desc={details.address.city} />
+            <InfoItem title={users.address_zipcode} desc={details.address.zipcode} />
             <InfoItem title={users.address_lat} desc={details.address.geo.lat} />
             <InfoItem title={users.address_lng} desc={details.address.geo.lng} />
           </div>
@@ -91,7 +91,7 @@ class ViewUser extends React.Component {
         <div className="view-user-section">
           <h3 className="view-user-section-title">{users.company}</h3>
           <div className="view-user-section-block">
-            <InfoItem title={users.company_name} desc={details.company.name} />
+            <InfoItem title={users.company_label} desc={details.company.label} />
             <InfoItem title={users.company_catchPhrase} desc={details.company.catchPhrase} />
             <InfoItem title={users.company_bs} desc={details.company.bs} />
           </div>
