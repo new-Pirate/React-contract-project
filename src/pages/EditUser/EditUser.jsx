@@ -5,8 +5,11 @@ import { withRouter } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 
 import { users, usersEng } from '../../constants/users';
-import { getUserDetails } from '../../store/action/user';
+import { getUserDetails, submitUserDetails } from '../../store/action/user';
+import { USERS_API } from '../../api/api';
 import './EditUser.css';
+
+const API = new USERS_API();
 
 class EditUser extends React.Component {
   constructor() {
@@ -78,7 +81,10 @@ class EditUser extends React.Component {
       },
       url: user.url
     };
-    console.log(newUser);
+
+    const { id } = this.props.match.params;
+    this.props.submitUserDetails(`/users/${id}`, newUser);
+    this.props.history.push(`/users/view/${id}`);
   }
 
   render() {
@@ -104,7 +110,7 @@ class EditUser extends React.Component {
                 <Input placeholder={details.name} defaultValue={details.name} />
               </Form.Item>
               <Form.Item label={users.id} className="edit-user-item" name={usersEng.id}>
-                <Input placeholder={details.id} defaultValue={details.id} />
+                <Input placeholder={details.id} defaultValue={details.id} disabled />
               </Form.Item>
             </div>
           </div>
@@ -176,7 +182,9 @@ class EditUser extends React.Component {
 
 EditUser.propTypes = {
   getUserDetails: PropTypes.func.isRequired,
+  submitUserDetails: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   details: PropTypes.object.isRequired
 };
 
@@ -188,7 +196,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserDetails: (api) => dispatch(getUserDetails(api))
+    getUserDetails: (api) => dispatch(getUserDetails(api)),
+    submitUserDetails: (url, body) => dispatch(submitUserDetails(url, body))
   };
 };
 

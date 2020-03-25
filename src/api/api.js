@@ -13,14 +13,6 @@ export class AUTH_API {
     return this.sendRequest('POST', `${AUTH_URL}/login`, body);
   }
 
-  put(url) {
-    return this.sendRequest('PUT', url);
-  }
-
-  delete(url) {
-    return this.sendRequest('DELETE', url);
-  }
-
   sendRequest = (method, url, body) => {
     const headers = {
       'Accept': 'application/json',
@@ -72,8 +64,8 @@ export class USERS_API {
     return this.sendRequest('POST', `${BASE_URL}${url}`, body);
   }
 
-  put(url) {
-    return this.sendRequest('PUT', `${BASE_URL}${url}`);
+  put(url, body) {
+    return this.sendRequest('PUT', `${BASE_URL}${url}`, body);
   }
 
   delete(url) {

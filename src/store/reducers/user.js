@@ -4,7 +4,10 @@ import {
   FETCH_USERS_LIST_FAILED,
   FETCH_USER_DETAILS_REQUEST,
   FETCH_USER_DETAILS_SUCCESS,
-  FETCH_USER_DETAILS_FAILED
+  FETCH_USER_DETAILS_FAILED,
+  SUBMIT_USER_DETAILS_REQUEST,
+  SUBMIT_USER_DETAILS_SUCCESS,
+  SUBMIT_USER_DETAILS_FAILURE
 } from '../types/users';
 
 const initialState = {
@@ -55,6 +58,7 @@ export default (state = initialState, { type, payload }) => {
 
     case FETCH_USERS_LIST_FAILED:
     case FETCH_USER_DETAILS_FAILED:
+    case SUBMIT_USER_DETAILS_FAILURE:
       return {
         ...state,
         loading: false,
@@ -69,6 +73,20 @@ export default (state = initialState, { type, payload }) => {
       };
 
     case FETCH_USER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        details: payload
+      };
+
+    case SUBMIT_USER_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        details: { ...initialState.details }
+      };
+
+    case SUBMIT_USER_DETAILS_SUCCESS:
       return {
         ...state,
         loading: false,

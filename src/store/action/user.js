@@ -4,7 +4,10 @@ import {
   FETCH_USERS_LIST_FAILED,
   FETCH_USER_DETAILS_REQUEST,
   FETCH_USER_DETAILS_SUCCESS,
-  FETCH_USER_DETAILS_FAILED
+  FETCH_USER_DETAILS_FAILED,
+  SUBMIT_USER_DETAILS_REQUEST,
+  SUBMIT_USER_DETAILS_SUCCESS,
+  SUBMIT_USER_DETAILS_FAILURE
 } from '../types/users';
 
 import { USERS_API } from '../../api/api';
@@ -51,6 +54,26 @@ export const fetchUserDetailsFalied = (payload) => {
   };
 };
 
+export const submitUserDetailsRequest = () => {
+  return {
+    type: SUBMIT_USER_DETAILS_REQUEST
+  };
+};
+
+export const submitUserDetailsSuccess = (payload) => {
+  return {
+    type: SUBMIT_USER_DETAILS_SUCCESS,
+    payload
+  };
+};
+
+export const submitUserDetailsFalied = (payload) => {
+  return {
+    type: SUBMIT_USER_DETAILS_FAILURE,
+    payload
+  };
+};
+
 // Инициируем экшены
 export const getUsersList = (params) => (dispatch) => {
   dispatch(fetchUserListRequest());
@@ -73,5 +96,18 @@ export const getUserDetails = (params) => (dispatch) => {
     })
     .catch((err) => (
       dispatch(fetchUserDetailsFalied(err))
+    ));
+};
+
+
+export const submitUserDetails = (url, body) => (dispatch) => {
+  dispatch(submitUserDetailsRequest());
+
+  API.put(url, body)
+    .then((res) => {
+      dispatch(submitUserDetailsSuccess(res));
+    })
+    .catch((err) => (
+      dispatch(submitUserDetailsFalied(err))
     ));
 };
