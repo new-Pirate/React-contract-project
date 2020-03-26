@@ -2,14 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Modal } from 'antd';
 
 import { users, usersEng } from '../../constants/users';
-import { getUserDetails, submitUserDetails } from '../../store/action/user';
-import { USERS_API } from '../../api/api';
+import { getUserDetails, submitUserDetails, deleteUserDetails } from '../../store/action/user';
 import './EditUser.css';
 
-const API = new USERS_API();
+const { confirm } = Modal;
 
 class EditUser extends React.Component {
   constructor() {
@@ -38,7 +37,8 @@ class EditUser extends React.Component {
           bs: ''
         },
         url: ''
-      }
+      },
+      visible: false
     };
   }
 
@@ -86,6 +86,27 @@ class EditUser extends React.Component {
     this.props.submitUserDetails(`/users/${id}`, newUser);
     this.props.history.push(`/users/view/${id}`);
   }
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
+  deleteOk = () => {
+    this.setState({
+      visible: false
+    });
+    const { id } = this.props.match.params;
+    this.props.deleteUserDetails(`/users/${id}`);
+    this.props.history.push('/users');
+  };
+
+  deleteCancel = () => {
+    this.setState({
+      visible: false
+    });
+  };
 
   render() {
     const { details } = this.state;
@@ -165,15 +186,36 @@ class EditUser extends React.Component {
               </Form.Item>
             </div>
           </div>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="edit-user-button"
+          <div className="edit-user-button-block">
+            <Form.Item>
+              <Button
+                type="primary"
+                className="edit-user-button"
+                danger
+                onClick={this.showModal}
+              >
+                Удалить пользователя
+              </Button>
+            </Form.Item>
+            <Modal
+              title="Уверен(а) что хош удалить пользователя?"
+              visible={this.state.visible}
+              onOk={this.deleteOk}
+              onCancel={this.deleteCancel}
             >
-              Сохранить пользователя
-            </Button>
-          </Form.Item>
+              <p>Подумай минутку...</p>
+              <p>Или парочку...</p>
+            </Modal>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="edit-user-button"
+              >
+                Сохранить пользователя
+              </Button>
+            </Form.Item>
+          </div>
         </Form>
       </div>
     );
@@ -183,6 +225,7 @@ class EditUser extends React.Component {
 EditUser.propTypes = {
   getUserDetails: PropTypes.func.isRequired,
   submitUserDetails: PropTypes.func.isRequired,
+  deleteUserDetails: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   details: PropTypes.object.isRequired
@@ -196,8 +239,9 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserDetails: (api) => dispatch(getUserDetails(api)),
-    submitUserDetails: (url, body) => dispatch(submitUserDetails(url, body))
+    getUserDetails: (url) => dispatch(getUserDetails(url)),
+    submitUserDetails: (url, body) => dispatch(submitUserDetails(url, body)),
+    deleteUserDetails: (url) => dispatch(deleteUserDetails(url))
   };
 };
 

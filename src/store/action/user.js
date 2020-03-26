@@ -7,7 +7,10 @@ import {
   FETCH_USER_DETAILS_FAILED,
   SUBMIT_USER_DETAILS_REQUEST,
   SUBMIT_USER_DETAILS_SUCCESS,
-  SUBMIT_USER_DETAILS_FAILURE
+  SUBMIT_USER_DETAILS_FAILURE,
+  DELETE_USER_DETAILS_REQUEST,
+  DELETE_USER_DETAILS_SUCCESS,
+  DELETE_USER_DETAILS_FAILURE
 } from '../types/users';
 
 import { USERS_API } from '../../api/api';
@@ -74,6 +77,26 @@ export const submitUserDetailsFalied = (payload) => {
   };
 };
 
+export const deleteUserDetailsRequest = () => {
+  return {
+    type: DELETE_USER_DETAILS_REQUEST
+  };
+};
+
+export const deleteUserDetailsSuccess = (payload) => {
+  return {
+    type: DELETE_USER_DETAILS_SUCCESS,
+    payload
+  };
+};
+
+export const deleteUserDetailsFalied = (payload) => {
+  return {
+    type: DELETE_USER_DETAILS_FAILURE,
+    payload
+  };
+};
+
 // Инициируем экшены
 export const getUsersList = (params) => (dispatch) => {
   dispatch(fetchUserListRequest());
@@ -99,7 +122,6 @@ export const getUserDetails = (params) => (dispatch) => {
     ));
 };
 
-
 export const submitUserDetails = (url, body) => (dispatch) => {
   dispatch(submitUserDetailsRequest());
 
@@ -109,5 +131,17 @@ export const submitUserDetails = (url, body) => (dispatch) => {
     })
     .catch((err) => (
       dispatch(submitUserDetailsFalied(err))
+    ));
+};
+
+export const deleteUserDetails = (url) => (dispatch) => {
+  dispatch(deleteUserDetailsRequest());
+
+  API.delete(url)
+    .then((res) => {
+      dispatch(deleteUserDetailsSuccess(res));
+    })
+    .catch((err) => (
+      dispatch(deleteUserDetailsFalied(err))
     ));
 };

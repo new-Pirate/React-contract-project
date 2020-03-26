@@ -7,7 +7,10 @@ import {
   FETCH_USER_DETAILS_FAILED,
   SUBMIT_USER_DETAILS_REQUEST,
   SUBMIT_USER_DETAILS_SUCCESS,
-  SUBMIT_USER_DETAILS_FAILURE
+  SUBMIT_USER_DETAILS_FAILURE,
+  DELETE_USER_DETAILS_REQUEST,
+  DELETE_USER_DETAILS_SUCCESS,
+  DELETE_USER_DETAILS_FAILURE
 } from '../types/users';
 
 const initialState = {
@@ -46,6 +49,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: true,
+        error: null,
         usersList: []
       };
 
@@ -53,12 +57,14 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
+        error: null,
         usersList: payload
       };
 
     case FETCH_USERS_LIST_FAILED:
     case FETCH_USER_DETAILS_FAILED:
     case SUBMIT_USER_DETAILS_FAILURE:
+    case DELETE_USER_DETAILS_FAILURE:
       return {
         ...state,
         loading: false,
@@ -69,6 +75,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: true,
+        error: null,
         details: { ...initialState.details }
       };
 
@@ -76,25 +83,34 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
+        error: null,
         details: payload
       };
 
     case SUBMIT_USER_DETAILS_REQUEST:
+    case DELETE_USER_DETAILS_REQUEST:
       return {
         ...state,
         loading: true,
-        details: { ...initialState.details }
+        error: null
       };
 
     case SUBMIT_USER_DETAILS_SUCCESS:
       return {
         ...state,
         loading: false,
-        details: payload
+        error: null
+      };
+
+    case DELETE_USER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        details: { ...initialState.details}
       };
 
     default:
       return state;
   }
 };
-
