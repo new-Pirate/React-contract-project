@@ -8,8 +8,6 @@ import { users, usersEng } from '../../constants/users';
 import { getUserDetails, submitUserDetails, deleteUserDetails } from '../../store/action/user';
 import './EditUser.css';
 
-const { confirm } = Modal;
-
 class EditUser extends React.Component {
   constructor() {
     super();
