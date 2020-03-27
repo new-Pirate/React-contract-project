@@ -1,6 +1,6 @@
 import Login from './Login/Login';
 import Contacts from './Contacts/Contacts';
-import About from './About/About';
+import RandomUser from './RandomUser/RandomUser';
 import Users from './Users/Users';
 import ViewUser from './ViewUser/ViewUser';
 import EditUser from './EditUser/EditUser';
@@ -8,7 +8,7 @@ import EditUser from './EditUser/EditUser';
 export {
   Login,
   Contacts,
-  About,
+  RandomUser,
   Users,
   ViewUser,
   EditUser
