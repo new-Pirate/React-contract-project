@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Layout, Menu } from 'antd';
 
 import Logo from '../../components/Logo/Logo';
-import { Contacts, RandomUser, Users, ViewUser, EditUser } from '../../pages';
+import { CreateUser, RandomUser, Users, ViewUser, EditUser } from '../../pages';
 import { getCookie, deleteCookie } from '../../utils/cookie';
 import { logout } from '../../store/action/auth';
 import './AppLayout.css';
@@ -38,8 +38,8 @@ class AppLayout extends React.Component {
             <Menu.Item key="Random">
               <Link to="/random">Random user</Link>
             </Menu.Item>
-            <Menu.Item key="Contacts">
-              <Link to="/contacts">Contacts</Link>
+            <Menu.Item key="Create">
+              <Link to="/create">Create user</Link>
             </Menu.Item>
             <Menu.Item
               key="Logout"
@@ -54,7 +54,7 @@ class AppLayout extends React.Component {
           <Switch>
             <Route path="/users" exact component={Users} />
             <Route path="/random" component={RandomUser} />
-            <Route path="/contacts" component={Contacts} />
+            <Route path="/create" component={CreateUser} />
             <Route path="/users/view/:id" component={ViewUser} />
             <Route path="/users/edit/:id" component={EditUser} />
           </Switch>

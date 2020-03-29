@@ -96,12 +96,14 @@ class ViewUser extends React.Component {
             <InfoItem title={users.company_bs} desc={details.company.bs} />
           </div>
         </div>
-        <Button
-          type="primary"
-          onClick={() => history.push(`/users/edit/${this.props.match.params.id}`)}
-        >
-          Редактировать пользователя
-        </Button>
+        <div className="view-user-button-block">
+          <Button
+            type="primary"
+            onClick={() => history.push(`/users/edit/${this.props.match.params.id}`)}
+          >
+            Редактировать пользователя
+          </Button>
+        </div>
       </div>
     );
   }
