@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Spin } from 'antd';
 
 import User from '../../components/User/User';
 import UserInfo from '../../components/UserInfo/UserInfo';
@@ -58,40 +59,48 @@ class Users extends React.Component {
     const visibleUserList = this.searchUsers(usersList, term);
 
     return (
-      <div className="users">
-        <div className="users-list">
-          <SearchPanel onSearch={this.onSearch} />
-          <h4>Найдено: {usersList.length} пользователей</h4>
-          {
-            visibleUserList.map((user) => {
-              return <User
-                key={user.id}
-                user={user}
-                onActiveUser={() => this.onActiveUser(user.id)}
-                activeUser={activeUser}
-              />;
-            })
-          }
+      <Spin
+        size="large"
+        tip="Loading..."
+        spinning={this.props.loading}
+      >
+        <div className="users">
+          <div className="users-list">
+            <SearchPanel onSearch={this.onSearch} />
+            <h4>Найдено: {usersList.length} пользователей</h4>
+            {
+              visibleUserList.map((user) => {
+                return <User
+                  key={user.id}
+                  user={user}
+                  onActiveUser={() => this.onActiveUser(user.id)}
+                  activeUser={activeUser}
+                />;
+              })
+            }
+          </div>
+          <div className="users-info">
+            <UserInfo
+              activeUser={activeUser}
+              userInfo={usersList[activeUser - 1]}
+            />
+          </div>
         </div>
-        <div className="users-info">
-          <UserInfo
-            activeUser={activeUser}
-            userInfo={usersList[activeUser - 1]}
-          />
-        </div>
-      </div>
+      </Spin>
     );
   }
 }
 
 Users.propTypes = {
   getUsersList: PropTypes.func.isRequired,
-  usersList: PropTypes.array.isRequired
+  usersList: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (store) => {
   return {
-    usersList: store.userReduser.usersList
+    usersList: store.userReduser.usersList,
+    loading: store.userReduser.loading
   };
 };
 
