@@ -7,7 +7,7 @@ import { Spin } from 'antd';
 import { getUsersList } from '../../store/action/user';
 import User from '../../components/User/User';
 import SearchPanel from '../../components/SearchPanel/SearchPanel';
-import UserInfo from '../../components/UserInfo/UserInfo';
+import HookUserInfo from '../../components/HookUserInfo/HookUserInfo';
 import './HooksUsers.css';
 
 function HooksUsers({usersList, loading, getUsersHookList}) {
@@ -65,7 +65,7 @@ function HooksUsers({usersList, loading, getUsersHookList}) {
           }
         </div>
         <div className="hooks-info">
-          <UserInfo
+          <HookUserInfo
             activeUser={activeUser}
             userInfo={usersList[activeUser - 1]}
           />

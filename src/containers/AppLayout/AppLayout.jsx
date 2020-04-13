@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Layout, Menu } from 'antd';
 
 import Logo from '../../components/Logo/Logo';
-import { CreateUser, RandomUser, Users, ViewUser, EditUser, HooksUsers } from '../../pages';
+import { CreateUser, RandomUser, Users, ViewUser, EditUser, HooksUsers, HookViewUser } from '../../pages';
 import { getCookie, deleteCookie } from '../../utils/cookie';
 import { logout } from '../../store/action/auth';
 import './AppLayout.css';
@@ -42,7 +42,7 @@ class AppLayout extends React.Component {
               <Link to="/create">Create user</Link>
             </Menu.Item>
             <Menu.Item key="Hook">
-              <Link to="/hook">Hooks users</Link>
+              <Link to="/hookusers">Hooks users</Link>
             </Menu.Item>
             <Menu.Item
               key="Logout"
@@ -55,12 +55,13 @@ class AppLayout extends React.Component {
         </Header>
         <Content className="appLayout-content">
           <Switch>
-            <Route path="/users" exact component={Users} />
             <Route path="/random" component={RandomUser} />
             <Route path="/create" component={CreateUser} />
+            <Route path="/users" exact component={Users} />
             <Route path="/users/view/:id" component={ViewUser} />
             <Route path="/users/edit/:id" component={EditUser} />
-            <Route path="/hook" component={HooksUsers} />
+            <Route path="/hookusers" exact component={HooksUsers} />
+            <Route path="/hookusers/view/:id" component={HookViewUser} />
           </Switch>
         </Content>
         <Footer className="appLayout-footer">Test React site ©2020 Created by new_P1rate</Footer>

@@ -1,0 +1,24 @@
+.hook-view-user {
+  padding: 24px 50px 24px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.hook-view-user-section {
+  padding: 20px 0;
+  color: #000;
+}
+
+.hook-view-user-section-block {
+  display: flex;
+}
+
+.hook-view-user-section-title {
+  margin-bottom: 20px;
+}
+
+.hook-view-user-button-block {
+  display: flex;
+  justify-content: space-around;
+}

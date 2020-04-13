@@ -5,6 +5,7 @@ import Users from './Users/Users';
 import ViewUser from './ViewUser/ViewUser';
 import EditUser from './EditUser/EditUser';
 import HooksUsers from './HooksUsers/HooksUsers';
+import HookViewUser from './HookViewUser/HookViewUser';
 
 export {
   Login,
@@ -13,5 +14,6 @@ export {
   Users,
   ViewUser,
   EditUser,
-  HooksUsers
+  HooksUsers,
+  HookViewUser
 };
