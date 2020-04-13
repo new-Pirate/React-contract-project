@@ -49,8 +49,8 @@ function HooksUsers({usersList, loading, getUsersHookList}) {
       tip="Loading..."
       spinning={loading}
     >
-      <div className="users">
-        <div className="users-list">
+      <div className="hooks-users">
+        <div className="hooks-list">
           <SearchPanel onSearch={onSearch} />
           <h4>Найдено: {userHookList.length} пользователей</h4>
           {
@@ -64,7 +64,7 @@ function HooksUsers({usersList, loading, getUsersHookList}) {
             })
           }
         </div>
-        <div className="users-info">
+        <div className="hooks-info">
           <UserInfo
             activeUser={activeUser}
             userInfo={usersList[activeUser - 1]}

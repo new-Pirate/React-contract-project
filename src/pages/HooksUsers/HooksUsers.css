@@ -1,8 +1,6 @@
 .hooks-users {
-  padding: 24px 50px 24px;
-  background: #fff;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hooks-list {
