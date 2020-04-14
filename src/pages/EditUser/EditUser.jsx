@@ -233,7 +233,7 @@ EditUser.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   details: PropTypes.object.isRequired,
-  loading: PropTypes.bool.loading
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (store) => {

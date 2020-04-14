@@ -10,13 +10,13 @@ import SearchPanel from '../../components/SearchPanel/SearchPanel';
 import HookUserInfo from '../../components/HookUserInfo/HookUserInfo';
 import './HooksUsers.css';
 
-function HooksUsers({usersList, loading, getUsersHookList}) {
+function HooksUsers({usersList, loading, getHookUsersList}) {
   const [userHookList, setUserHookList] = useState([]);
   const [activeUser, setActiveUser] = useState(0);
   const [term, setTerm] = useState('');
 
   useEffect(() => {
-    getUsersHookList('/users');
+    getHookUsersList('/users');
   }, []);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function HooksUsers({usersList, loading, getUsersHookList}) {
 }
 
 HooksUsers.propTypes = {
-  getUsersHookList: PropTypes.func.isRequired,
+  getHookUsersList: PropTypes.func.isRequired,
   usersList: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired
 };
@@ -90,7 +90,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUsersHookList: (api) => dispatch(getUsersList(api))
+    getHookUsersList: (api) => dispatch(getUsersList(api))
   };
 };
 

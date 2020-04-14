@@ -9,7 +9,7 @@ import InfoItem from '../../components/InfoItem/InfoItem';
 import { getUserDetails } from '../../store/action/user';
 import './HookViewUser.css';
 
-function HookViewUser({ history, loading, match, getUserHookDetails, details }) {
+function HookViewUser({ history, loading, match, getHookUserDetails, details }) {
   const [userHookDetails, setUserHookDetails] = useState({
     id: '',
     name: '',
@@ -36,12 +36,11 @@ function HookViewUser({ history, loading, match, getUserHookDetails, details }) 
   });
 
   useEffect(() => {
-    getUserHookDetails(`/users/${match.params.id}`);
+    getHookUserDetails(`/users/${match.params.id}`);
   }, []);
 
   useEffect(() => {
     setUserHookDetails(details);
-    console.log(details);
   }, [details]);
 
   return (
@@ -90,7 +89,7 @@ function HookViewUser({ history, loading, match, getUserHookDetails, details }) 
         <div className="hook-view-user-button-block">
           <Button
             type="primary"
-            onClick={() => history.push(`/hookusers/edit/${this.props.match.params.id}`)}
+            onClick={() => history.push(`/hookusers/edit/${match.params.id}`)}
           >
             Редактировать пользователя
           </Button>
@@ -101,7 +100,7 @@ function HookViewUser({ history, loading, match, getUserHookDetails, details }) 
 }
 
 HookViewUser.propTypes = {
-  getUserHookDetails: PropTypes.func.isRequired,
+  getHookUserDetails: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   details: PropTypes.object.isRequired,
@@ -117,7 +116,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserHookDetails: (api) => dispatch(getUserDetails(api))
+    getHookUserDetails: (api) => dispatch(getUserDetails(api))
   };
 };
 
