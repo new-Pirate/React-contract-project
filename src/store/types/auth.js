@@ -1,4 +1,4 @@
-export const GET_TOKEN = 'GET_TOKEN';
-export const GET_TOKEN_SUCCESS = 'GET_TOKEN_SUCCESS';
-export const GET_TOKEN_FAIL = 'GET_TOKEN_FAIL';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGOUT = 'LOGOUT';

@@ -1,44 +1,38 @@
-import {
-  GET_TOKEN,
-  GET_TOKEN_SUCCESS,
-  GET_TOKEN_FAIL,
-  LOGOUT
-} from '../types/auth';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from '../types/auth';
 
 const initialState = {
-  error: null,
   loading: false,
-  isLoggedIn: !!document.cookie
+  error: null,
+  isLoggedIn: false
 };
 
-const reducer = (state = initialState, { type, payload }) => {
+export default (state = initialState, {type, payload}) => {
   switch (type) {
-    case GET_TOKEN:
-      return {
-        ...state,
-        loading: true,
-        error: null
+    case LOGIN_REQUEST:
+      return { ...state,
+        loading: true
       };
-    case GET_TOKEN_SUCCESS: {
-      return {
-        ...state,
+
+    case LOGIN_SUCCESS:
+      return { ...state,
         loading: false,
-        error: null
+        isLoggedIn: true
       };
-    }
-    case GET_TOKEN_FAIL:
-      return {
-        ...state,
+
+    case LOGIN_FAILED:
+      return { ...state,
         loading: false,
-        error: payload
+        error: payload.message,
+        isLoggedIn: false
       };
+
     case LOGOUT:
-      return {
-        ...state
+      return { ...state,
+        isLoggedIn: false
       };
+
     default:
       return state;
   }
 };
 
-export default reducer;

@@ -1,0 +1,32 @@
+.edit-user {
+  padding: 24px 50px 24px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-user-section {
+  padding: 20px 0;
+}
+
+.edit-user-section-block {
+  display: flex;
+}
+
+.edit-user-item {
+  border-left: 1px solid #E8E6E6;
+  padding: 0 20px !important;
+}
+
+.edit-user-section-title {
+  margin-bottom: 20px;
+}
+
+.edit-user-button-block {
+display: flex;
+justify-content: space-around;
+}
+
+.edit-user-button {
+  width: 100%;
+}

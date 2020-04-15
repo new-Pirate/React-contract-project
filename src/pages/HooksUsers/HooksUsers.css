@@ -1,0 +1,15 @@
+.hooks-users {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hooks-list {
+  padding: 24px 50px 24px 0;
+  width: 44%;
+}
+
+.hooks-info {
+  width: 56%;
+  padding: 0 50px 24px;
+  background: #fff;
+}

@@ -1,0 +1,27 @@
+.appLayout-menu {
+  line-height: 64px !important;
+}
+
+.ant-layout-header {
+  background: #fff !important;
+}
+
+.appLayout-content {
+  padding: 0 50px;
+}
+
+.appLayout-footer {
+  text-align: center;
+}
+
+[data-theme="dark"] .site-layout-content {
+  background: #141414;
+}
+
+[data-theme="dark"] .logo {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.logout {
+  float: right;
+}
